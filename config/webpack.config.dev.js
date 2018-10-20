@@ -33,17 +33,14 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 
 // common function to get style loaders
 const getStyleLoaders = (cssOptions, preProcessor) => {
-  const customOptions = {
-    importLoaders: 1,
-    modules: true, 
-    localIdentName: '[name]__[local]__[hash:base64:5]'
-
-  };
   const loaders = [
     require.resolve('style-loader'),
     {
       loader: require.resolve('css-loader'),
-      options:{cssOptions, customOptions}  
+      options:{cssOptions, 
+        importLoaders: 1,
+        modules: true, 
+        localIdentName: '[name]__[local]__[hash:base64:5]'  }
     },
     {
       // Options for PostCSS as we reference these options twice
